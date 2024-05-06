@@ -54,6 +54,7 @@ namespace NzbDrone.Core.Configuration
         string SyslogServer { get; }
         int SyslogPort { get; }
         string SyslogLevel { get; }
+        bool LogDbEnabled { get; }
         string Theme { get; }
         string PostgresHost { get; }
         int PostgresPort { get; }
@@ -233,6 +234,7 @@ namespace NzbDrone.Core.Configuration
         public string PostgresLogDb => _postgresOptions?.LogDb ?? GetValue("PostgresLogDb", "prowlarr-log", persist: false);
         public int PostgresPort => (_postgresOptions?.Port ?? 0) != 0 ? _postgresOptions.Port : GetValueInt("PostgresPort", 5432, persist: false);
 
+        public bool LogDbEnabled => _logOptions.DbEnabled ?? GetValueBoolean("LogDbEnabled", true, persist: false);
         public bool LogSql => _logOptions.Sql ?? GetValueBoolean("LogSql", false, persist: false);
         public int LogRotate => _logOptions.Rotate ?? GetValueInt("LogRotate", 50, persist: false);
         public bool FilterSentryEvents => _logOptions.FilterSentryEvents ?? GetValueBoolean("FilterSentryEvents", true, persist: false);
